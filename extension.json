@@ -1,0 +1,12 @@
+{
+    "code": "telegramnotifier",
+    "name": "Telegram Notifier",
+    "description": "Send order notifications to Telegram",
+    "version": "1.0.0",
+    "author": "Catarchy",
+    "icon": "fa-telegram",
+    "homepage": "",
+    "require": {
+      "tastyigniter": "~3.0"
+    }
+  }
