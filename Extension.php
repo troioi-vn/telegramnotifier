@@ -1,6 +1,6 @@
 <?php
 
-namespace Extension\TelegramNotifier;
+namespace Igniter\TelegramNotifier;
 
 use System\Classes\BaseExtension;
 use Event;
@@ -16,8 +16,8 @@ class Extension extends BaseExtension
                 'label' => 'Telegram Notifier Settings',
                 'description' => 'Manage Telegram bot settings for order notifications.',
                 'icon' => 'fa fa-telegram',
-                'model' => 'Extension\TelegramNotifier\Models\Settings',
-                'permissions' => ['Extension.TelegramNotifier.Manage'],
+                'model' => 'Igniter\TelegramNotifier\Models\Settings',
+                'permissions' => ['Igniter.TelegramNotifier.Manage'],
             ],
         ];
     }
@@ -37,7 +37,7 @@ class Extension extends BaseExtension
     protected function sendOrderStatusNotification($model, $type)
     {
         // Get settings
-        $settings = \Extension\TelegramNotifier\Models\Settings::instance();
+        $settings = \Igniter\TelegramNotifier\Models\Settings::instance();
 
         // Check if notifications are enabled
         if (!$settings->get('enable_notifications', true))
