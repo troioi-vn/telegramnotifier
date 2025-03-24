@@ -1,5 +1,5 @@
 {
-    "code": "telegramnotifier",
+    "code": "igniter.telegramnotifier",
     "name": "Telegram Notifier",
     "description": "Send order notifications to Telegram",
     "version": "1.0.0",
