@@ -5,7 +5,6 @@ namespace Igniter\TelegramNotifier;
 use System\Classes\BaseExtension;
 use Event;
 use Admin\Models\Orders_model;
-use Admin\Classes\AdminController;
 
 class Extension extends BaseExtension
 {
@@ -16,25 +15,26 @@ class Extension extends BaseExtension
                 'label' => 'Telegram Notifier Settings',
                 'description' => 'Manage Telegram bot settings for order notifications.',
                 'icon' => 'fa fa-telegram',
-                'model' => 'Igniter\TelegramNotifier\Models\Settings',
-                'permissions' => ['Igniter.TelegramNotifier.Manage'],
+                'model' => \Igniter\TelegramNotifier\Models\Settings::class,
+                'permissions' => ['Igniter.TelegramNotifier.ManageSettings'],
             ],
         ];
     }
 
     public function boot()
     {
-        // Subscribe to order status update events
-        Event::listen('admin.order.beforeStatusAdded', function ($model) {
-            $this->sendOrderStatusNotification($model, 'new');
+        // Subscribe to order creation events
+        Event::listen('admin.order.placed', function ($order) {
+            $this->sendOrderStatusNotification($order, 'new');
         });
 
-        Event::listen('admin.order.beforeStatusUpdated', function ($model, $statusId) {
+        // Subscribe to order status update events
+        Event::listen('admin.order.status.updated', function ($model, $statusId, $previousStatus) {
             $this->sendOrderStatusNotification($model, 'updated');
         });
     }
 
-    protected function sendOrderStatusNotification($model, $type)
+    protected function sendOrderStatusNotification($order, $type)
     {
         // Get settings
         $settings = \Igniter\TelegramNotifier\Models\Settings::instance();
@@ -51,7 +51,7 @@ class Extension extends BaseExtension
             return;
 
         // Build the message
-        $message = $this->buildNotificationMessage($model, $type);
+        $message = $this->buildNotificationMessage($order, $type);
 
         // Send the message to Telegram
         $this->sendTelegramMessage($botToken, $chatId, $message);

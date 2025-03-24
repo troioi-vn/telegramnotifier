@@ -1,0 +1,29 @@
+{
+    "name": "yourname/ti-ext-telegramnotifier",
+    "type": "tastyigniter-extension",
+    "description": "Send order notifications to Telegram",
+    "keywords": [
+      "tastyigniter",
+      "telegram",
+      "notifications",
+      "orders"
+    ],
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "Your Name",
+        "email": "your.email@example.com"
+      }
+    ],
+    "extra": {
+      "tastyigniter-extension": {
+        "code": "igniter.telegramnotifier",
+        "name": "Telegram Notifier",
+        "icon": {
+          "class": "fa fa-telegram",
+          "backgroundColor": "#0088cc"
+        },
+        "homepage": ""
+      }
+    }
+  }

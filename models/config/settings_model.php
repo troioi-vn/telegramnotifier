@@ -1,7 +1,3 @@
-# ===================================
-#  Form Field Definitions
-# ===================================
-
 fields:
     section_telegram:
         label: Telegram Configuration
