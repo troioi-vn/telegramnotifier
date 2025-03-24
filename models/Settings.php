@@ -11,9 +11,4 @@ class Settings extends Model
     public $settingsCode = 'igniter_telegramnotifier_settings';
 
     public $settingsFieldsConfig = 'settings_model';
-
-    public function __construct()
-    {
-        parent::__construct();
-    }
 }
